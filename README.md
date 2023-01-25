@@ -21,6 +21,13 @@ Alternate way :
 
 ## Dynamic Routing : Parameteric path segments
 
+The dynamic path route object is added like this : 
 ```{ path:'/products/:productId' , element:<SomeProduct/>}```
+
+Then , inside the rendered component , the user entered value of the parameter can be captured and used to dynamically display
+the desired content : Using useParams
+```  const params = useParams();
+      <h1>{params.productId}</h1>
+```
 
 
