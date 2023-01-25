@@ -30,5 +30,14 @@ the desired content : Using useParams
       const params = useParams();
       <h1>{params.productId}</h1>
 ```
+### Dynamic Links : For products rendered from a list : To their dynamic routes
+
+```
+     <Link to={'/products/'+product.id}>{product.title}</Link>
+     //Or using template literal as
+     <Link to={`/products/${product.id}`}>{product.title}</Link>
+```
+
+
 
 
