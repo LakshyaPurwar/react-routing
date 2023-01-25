@@ -9,3 +9,7 @@ Learning multi-page spa here
 
 ![p1 4](https://user-images.githubusercontent.com/78524327/214622068-91096348-76e9-4d6b-9d9f-d1c570414ab4.png)
 
+Alternate way : 
+![image](https://user-images.githubusercontent.com/78524327/214624591-89602ccb-d08d-47ec-ae7a-ea0711d46cdf.png)
+
+
