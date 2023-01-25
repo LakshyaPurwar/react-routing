@@ -13,10 +13,14 @@ Alternate way :
 ![image](https://user-images.githubusercontent.com/78524327/214656274-214f28e4-8051-40fc-b7d3-0b1b64cb8388.png)
 
 
-###Navigating Programmatically : Without user action : 
+##Navigating Programmatically : Without user action : 
 
 `const navigate = useNavigate()`
 
 `navigate('/products')`
+
+## Dynamic Routing : Parameteric path segments
+
+```{ path:'/products/:productId' , element:<SomeProduct/>}```
 
 
