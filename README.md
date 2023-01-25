@@ -34,7 +34,9 @@ the desired content : Using useParams
 
 ```
      <Link to={'/products/'+product.id}>{product.title}</Link>
-     //Or using template literal as
+    
+    OR
+     
      <Link to={`/products/${product.id}`}>{product.title}</Link>
 ```
 
