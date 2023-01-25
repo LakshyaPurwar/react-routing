@@ -40,6 +40,24 @@ the desired content : Using useParams
      <Link to={`/products/${product.id}`}>{product.title}</Link>
 ```
 
+### Absolute Path Vs Relative Paths
+1.Path starting with `/` is an absolute path , appended after domain name.
+
+2.Path not starting with `/` represents a relative path.
+
+In route definitions , relative path is relative to the parent or wrapping route path , like `/` of the layout.
+
+In links , relative path generally seems to append to the current url.
+
+But in relative path , an additional `relative` attribute comes in with 2 possible value : `path` and `route`
+
+`route` is default , eg :  relative path `..` takes back to the wrapping/ parent route definition if relative = route.
+
+If `relative='path'` , then `..` would take back to the previous path segment by removing just one segment...Interesting though.
+
+![image](https://user-images.githubusercontent.com/78524327/214681975-58bcccda-6b63-43c1-a039-f9b32020dabf.png)
+
+
 
 
 
