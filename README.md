@@ -57,6 +57,11 @@ If `relative='path'` , then `..` would take back to the previous path segment by
 
 ![image](https://user-images.githubusercontent.com/78524327/214681975-58bcccda-6b63-43c1-a039-f9b32020dabf.png)
 
+### Index Propery
+ Applied to the default route that has the same path as a parent route , eg: Home element in the previous case :
+ So, such elements/routes are called index elements:
+ `{ index:true, path:'/' , element:<HomePage/> , }`
+
 
 
 
