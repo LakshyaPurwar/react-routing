@@ -12,4 +12,10 @@ Learning multi-page spa here
 Alternate way : 
 ![image](https://user-images.githubusercontent.com/78524327/214624591-89602ccb-d08d-47ec-ae7a-ea0711d46cdf.png)
 
+###Navigating Programmatically : Without user action : 
+
+`const navigate = useNavigate()`
+
+`navigate('/products')`
+
 
