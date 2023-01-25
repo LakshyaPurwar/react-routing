@@ -26,7 +26,8 @@ The dynamic path route object is added like this :
 
 Then , inside the rendered component , the user entered value of the parameter can be captured and used to dynamically display
 the desired content : Using useParams
-```  const params = useParams();
+```
+      const params = useParams();
       <h1>{params.productId}</h1>
 ```
 
