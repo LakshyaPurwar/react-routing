@@ -61,6 +61,33 @@ If `relative='path'` , then `..` would take back to the previous path segment by
  Applied to the default route that has the same path as a parent route , eg: Home element in the previous case :
  So, such elements/routes are called index elements:
  `{ index:true, path:'/' , element:<HomePage/> , }`
+ 
+ ## Data Fetching using `loader` in Route : 
+ 
+1. Instead of loading the data corresponding to a page , in useEffect , after the page has been rendered.
+
+2.React Router offers a way of fetching data , as soon as a route or corresponding path is requested , before the component is mounted.
+
+3.For , this we add this loader property and the fetching function in the route definition : Eg : The below route definition :
+```
+{
+        path: 'events/'
+        , element: <EventsLayout />,
+        loader: async () => {
+          const response = await fetch('http://localhost:8080/events');
+
+          if (!response.ok) {
+            //Some Error handling code here
+          } else {
+            const resData = await response.json();
+            return resData;
+            // setFetchedEvents(resData.events);
+          }
+        },
+       }
+```
+
+
 
 
 
