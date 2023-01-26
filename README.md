@@ -92,6 +92,29 @@ If `relative='path'` , then `..` would take back to the previous path segment by
 
 ![image](https://user-images.githubusercontent.com/78524327/214911960-7b5bd8a4-883e-41a9-a7fb-c3f2ac0926cf.png)
 
+NOTE : 
+
+0.The loader code should be put in the component as a separate function and then exported and used in the app.jsx.
+
+1.useLoader can be accessed by all components inside our page component associated with the loader.
+
+2.This loading takes place at time of navigating the url ,so in case of delay , this new page is rendered only after the data is loaded.
+Till then , the previous page remains stuck.
+
+3.using useNavigation , the loading state can be accessed and feedback be given on the previous page or the layout root page.
+
+4.The useLoaderData can also resolve data out of the response object , so leverage that to reduce code.
+
+![image](https://user-images.githubusercontent.com/78524327/214924766-889a593c-baab-4b20-9a93-14f6e4c56cc7.png)
+
+```  
+import { useNavigation } from 'react-router-dom'
+      const navigation = useNavigation();
+    const navigationState = navigation.state;
+    {navigationState=='loading'  && <div>Loading ... </div>}
+```
+
+
 
 
 
