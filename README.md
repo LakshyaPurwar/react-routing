@@ -90,23 +90,7 @@ If `relative='path'` , then `..` would take back to the previous path segment by
 
 5.Then , it can be accessed within the component using `useLoaderState` hoo :
 
-` 
-import { useLoaderData } from 'react-router-dom';
-import EventsList from '../components/EventsList';
-
-function EventsPage() {
-  const fetchedEvents = useLoaderData();
-  //Even if the returned data is a promise : 
-  //Then , the useLoaderData will resolve this for us
-  return (
-    <>
-      <EventsList events={fetchedEvents} />
-    </>
-  );
-}
-
-export default EventsPage;`
-
+![image](https://user-images.githubusercontent.com/78524327/214911960-7b5bd8a4-883e-41a9-a7fb-c3f2ac0926cf.png)
 
 
 
