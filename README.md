@@ -90,7 +90,7 @@ If `relative='path'` , then `..` would take back to the previous path segment by
 
 5.Then , it can be accessed within the component using `useLoaderState` hoo :
 
-``` 
+` 
 import { useLoaderData } from 'react-router-dom';
 import EventsList from '../components/EventsList';
 
@@ -105,7 +105,7 @@ function EventsPage() {
   );
 }
 
-export default EventsPage;```
+export default EventsPage;`
 
 
 
