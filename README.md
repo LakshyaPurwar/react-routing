@@ -72,7 +72,7 @@ If `relative='path'` , then `..` would take back to the previous path segment by
 ```
 {
         path: 'events/'
-        , element: <EventsLayout />,
+        , element: <EventPage/>,
         loader: async () => {
           const response = await fetch('http://localhost:8080/events');
 
@@ -80,12 +80,32 @@ If `relative='path'` , then `..` would take back to the previous path segment by
             //Some Error handling code here
           } else {
             const resData = await response.json();
-            return resData;
+            return resData.events;
             // setFetchedEvents(resData.events);
           }
         },
        }
 ```
+4.The loaded data , that must be used in the page , is returned in the function.
+
+5.Then , it can be accessed within the component using `useLoaderState` hoo :
+
+``` 
+import { useLoaderData } from 'react-router-dom';
+import EventsList from '../components/EventsList';
+
+function EventsPage() {
+  const fetchedEvents = useLoaderData();
+  //Even if the returned data is a promise : 
+  //Then , the useLoaderData will resolve this for us
+  return (
+    <>
+      <EventsList events={fetchedEvents} />
+    </>
+  );
+}
+
+export default EventsPage;```
 
 
 
