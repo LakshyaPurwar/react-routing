@@ -106,6 +106,8 @@ Till then , the previous page remains stuck.
 4.The useLoaderData can also resolve data out of the response object , so leverage that to reduce code.
 
 ![image](https://user-images.githubusercontent.com/78524327/214924766-889a593c-baab-4b20-9a93-14f6e4c56cc7.png)
+![image](https://user-images.githubusercontent.com/78524327/214928593-eca01165-3c0d-488e-a953-9abfc154ba50.png)
+
 
 ```  
 import { useNavigation } from 'react-router-dom'
