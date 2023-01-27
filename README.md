@@ -116,6 +116,27 @@ import { useNavigation } from 'react-router-dom'
     {navigationState=='loading'  && <div>Loading ... </div>}
 ```
 
+## Handling error state in loading with `loader` in react-router : 
+
+1.If in the loader , response is not ok , we throw an error response.
+json function allows us to construct an error response with ease.
+
+![image](https://user-images.githubusercontent.com/78524327/215184979-69eae0d8-b1bd-4e37-9815-9be1e9421e3e.png)
+
+
+2.If an error is thrown by the loader , the nearest errorElement will get displayed.
+Within this error element , using the `useRouterError` hook , we can gain access to `error.status` and `error.data.message`.
+
+![image](https://user-images.githubusercontent.com/78524327/215185216-3806f151-b9b6-4264-bebe-8419df8551a6.png)
+
+
+3.To fetch the data for the dynamic route , we can also use loader.Interestingly , since we can only use the hooks such as useParams within the components,
+still we can gain access to the route parameters in the loader functions paramters , automatically by react-router.
+
+![image](https://user-images.githubusercontent.com/78524327/215185439-5489b06b-9010-4f16-ab8b-efc6b116d15e.png)
+
+
+
 
 
 
