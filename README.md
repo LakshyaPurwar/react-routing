@@ -110,7 +110,7 @@ Till then , the previous page remains stuck.
 
 
 
-```javacript
+```javascript
 import { useNavigation } from 'react-router-dom'
       const navigation = useNavigation();
     const navigationState = navigation.state;
