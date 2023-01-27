@@ -29,6 +29,7 @@ import Layout from './pages/Layout'
 import ErrorPage from './pages/ErrorPage';
 import EventsLayout from './pages/EventsLayout';
 import { LoaderFunction as eventsLoader } from './pages/EventsPage';
+import { LoaderFunction as eventDetails } from './pages/EventDetailsPage';
 
 
 const router = createBrowserRouter([
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
                element: <EventsPage />,
               loader : eventsLoader,
          },
-          { path: ':eventId', element: <EventDetailsPage /> },
+          { path: ':eventId', element: <EventDetailsPage />, loader : eventDetails },
           { path: 'new', element: <NewEventPage /> },
           { path: ':eventId/edit', element: <EditEventPage /> }
 
