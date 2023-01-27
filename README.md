@@ -32,7 +32,7 @@ the desired content : Using useParams
 ```
 ### Dynamic Links : For products rendered from a list : To their dynamic routes
 
-```
+```javascript
      <Link to={'/products/'+product.id}>{product.title}</Link>
     
     OR
@@ -69,7 +69,7 @@ If `relative='path'` , then `..` would take back to the previous path segment by
 2.React Router offers a way of fetching data , as soon as a route or corresponding path is requested , before the component is mounted.
 
 3.For , this we add this loader property and the fetching function in the route definition : Eg : The below route definition :
-```
+```javascript
 {
         path: 'events/'
         , element: <EventPage/>,
@@ -109,7 +109,7 @@ Till then , the previous page remains stuck.
 ![image](https://user-images.githubusercontent.com/78524327/214928593-eca01165-3c0d-488e-a953-9abfc154ba50.png)
 
 
-```  
+```javacript
 import { useNavigation } from 'react-router-dom'
       const navigation = useNavigation();
     const navigationState = navigation.state;
