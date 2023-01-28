@@ -136,6 +136,31 @@ still we can gain access to the route parameters in the loader functions paramte
 
 ![image](https://user-images.githubusercontent.com/78524327/215185439-5489b06b-9010-4f16-ab8b-efc6b116d15e.png)
 
+### Adding common loader for multiple routes.
+
+1.For this , we simply create a parent route with the loader  , an id, without any element  , but children.
+
+```javascript
+{
+          path:':eventId/' ,
+          loader : eventDetails,
+          id : 'event-loader-route',
+          children:
+          [
+            { index:true , element: <EventDetailsPage />,action : eventDeleteAction },
+            { path: 'edit', element: <EditEventPage /> }
+          ],
+          
+        },
+```
+
+2.But , inside the children route , this loader data is extracted using a different `useRouteLoaderRoute('route_id_here')`.
+
+```javascript
+import { useRouteLoaderData } from 'react-router-dom';
+const data = useRouteLoaderData('event-loader-route');
+```
+
 
 
 
