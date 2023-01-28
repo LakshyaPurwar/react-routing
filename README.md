@@ -288,7 +288,7 @@ import { useNavigation } from 'react-router-dom';
   #### NOTE : Normal Form component causes route transition to the action='/event' , action url in addition to calling the associated action.
   #### That is why . navigation.state could tell us about loading or submitting states.
   
-  ## useFetch.Form , useFetch.data and useFetch.state :
+  ##  `useFetcher` , `fetcher.Form` , `fetcher.data` and `useFetch.state` :
   #### useFetch provides an alternative form , which does not cause route transition to the mentioned action route.
   #### Used when a form in another component wants the action of some other route , without going to that route.
   #### Here , the data returned by the action is obtained throught fetcher.data and the state through fetched.state
