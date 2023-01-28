@@ -256,7 +256,9 @@ import { useNavigation } from 'react-router-dom';
     {actionData && actionData.errors && <ul> {Object.values(actionData.errors).map((err)=>{
       console.log(err);
       return <li key={err}>{err}</li>}) }</ul>}
+
   ```
+  `Object.values(objectName)` is great to loop through javascript object values.
 
 
 
