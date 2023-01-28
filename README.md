@@ -239,6 +239,25 @@ import { useNavigation } from 'react-router-dom';
   
 ```
 
+## Error response on form submission by Backend
+ In such case , backend return response with status 422.
+ With such error , error page must not be displayed , but the form with error message.
+ 
+ For this , the obtained response is returned by the action function.
+ 
+ Just like the response by loader can be accessed inside the route components, similarly the action data
+  `useActionData` hook
+  ```javascript
+  import { useActionData } from 'react-router-dom';
+  
+  const actionData = useActionData();
+  
+  {actionData && actionData.message}
+    {actionData && actionData.errors && <ul> {Object.values(actionData.errors).map((err)=>{
+      console.log(err);
+      return <li key={err}>{err}</li>}) }</ul>}
+  ```
+
 
 
 
