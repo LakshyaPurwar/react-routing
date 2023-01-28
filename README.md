@@ -229,6 +229,15 @@ export async function ActionFunction({params , request}){
 
 ```
 
+### Loading / Submitting state
+Again using useNavigation , the submitting state can be handled.
+```javascript
+import { useNavigation } from 'react-router-dom';
+ const navigation = useNavigation();
+ let isSubmitting = navigation.state==='submitting';
+ <button disabled={isSubmitting}>{isSubmitting ? 'Submitting ... ' : 'Save'}</button>
+  
+```
 
 
 
