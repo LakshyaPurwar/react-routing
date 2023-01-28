@@ -161,6 +161,73 @@ import { useRouteLoaderData } from 'react-router-dom';
 const data = useRouteLoaderData('event-loader-route');
 ```
 
+## Handling Form submissions using Actions via React-Router
+
+1.Instead of the traditional method of tracking form data and having a submit handler , this can be simplified using actions.
+
+Firstly , form is modified as : to a `<Form>` component : Mention the method : 
+```javascript
+import { Form } from 'react-router-dom';
+<Form method='post' className={classes.form}>
+```
+2.On submit  , the nearest action function associated with the current route will be triggered.
+In the action function , this form data , method  and route parameters will be directly accessible : 
+
+```javascript
+//This action function is made inside the route page where the form is : 
+export async function FormAction({request , params})
+{
+    const formData  = await request.formData();
+
+    const eventData = {
+      title : formData.get('title'),
+      image : formData.get('image'),
+      date : formData.get('date'),
+      description : formData.get('description')
+
+    }
+
+    const response = await fetch('http://localhost:8080/events' , {
+      method:'POST',
+      headers:{
+         'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify(eventData)
+    });
+
+    if(!response.ok)
+    {
+      throw json({message : 'Could not send data'} , {status : 500});
+    }
+    else{
+      return redirect('/events');
+    }
+  
+
+}
+```
+The action is mentioned in the route definition : 
+`{ path: 'new', element: <NewEventPage />  , action:newEventAction},`
+
+3.Now , we can programmatically call the action , not just via form submission : 
+Eg : On click of the delete button. Also , route paramters can be directly accessed in action as in loader
+
+```javascript
+import { useSubmit } from 'react-router-dom';
+const submit = useSubmit();
+//Then to trigger the action , submit is called with data (null here) and metadata
+submit(null , {method : 'delete'});
+```
+Again , this is accessed in the same way in the action function : 
+
+```javascript
+export async function ActionFunction({params , request}){
+  const eventId = params.eventId;
+  const response = await fetch('http://localhost:8080/events/'+eventId,{
+    method:request.method,
+  });
+
+```
 
 
 
