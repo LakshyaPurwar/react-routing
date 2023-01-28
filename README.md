@@ -259,7 +259,27 @@ import { useNavigation } from 'react-router-dom';
 
   ```
   `Object.values(objectName)` is great to loop through javascript object values.
+  
+  ### Common action function for adding new event and editing
+  The method in form provided the differentiation , `POST` vs `PATCH`
+  ```javascript
+  
+  export async function FormAction({request , params})
+  {
+      // If method is POST
+    let url = 'http://localhost:8080/events';
+    //If method is PATCH
+    if(request.method === 'PATCH')
+    {
+      url = 'http://localhost:8080/events/'+params.eventId;
 
+    }
+    //For fetch
+      method = request.method;
+  }
+  
+  
+  ```
 
 
 
