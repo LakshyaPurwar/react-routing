@@ -109,6 +109,21 @@ const data = useActionData();
  
  ![image](https://user-images.githubusercontent.com/78524327/215476940-51c5c7aa-1b3d-436b-9eed-032f5ea215d1.png)
  
+ ## Adding logout
+ ```javascript
+ <Form action='/logout' method='post'>
+            <button >Logout</button
+ </Form>
+ ```
+ The logout action  : 
+ ![image](https://user-images.githubusercontent.com/78524327/215478686-06ee20b7-2fe4-4e62-94e5-312e47c371e7.png)
+ 
+ 
+ #### A logout path with no component , but action ` { path : 'logout' , action:logoutAction},`
+ 
+ 
+ 
+
  
 
 
