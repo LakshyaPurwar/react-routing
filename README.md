@@ -43,9 +43,14 @@
 
   const url = 'http://localhost:8080/'+mode;
  ```
+ # Authentication
  
+ ![image](https://user-images.githubusercontent.com/78524327/215475603-829e308d-35f5-4af0-b0c5-61300b3eb6a7.png)
+![image](https://user-images.githubusercontent.com/78524327/215475620-20f646ae-93ba-4abe-9625-0f8c49863374.png)
+![image](https://user-images.githubusercontent.com/78524327/215475633-b6444b02-8997-4229-acba-a9ab817ff031.png)
+
  
- ## II.Validation user input and outputting error in the input component
+ ## I.Validation user input and outputting error in the input component
  
  #### 1.Just client side auth is not enough as it can be altered in the browser.
  #### 2.In the action of form submission , if the server finds errors , it may respond accordigly (Eg : 422 status code)
@@ -80,6 +85,35 @@ const data = useActionData();
  
  
  ```
+ 
+ ## II.Dealing with auth tokens
+ 
+ ```javascript
+ //Login Successfully done
+  //Then a token must have been awarded
+  //That must be handled properly
+  const resData = await response.json();
+  const token = resData.token;
+  //Here , since token expires in 1hr , an expiration time is also stored in the local storage
+  localStorage.setItem('token' , token);
+  const expiration = new Date();
+  expiration.setHours(expiration.getHours()+1);
+  localStorage.setItem('expiration',expiration.toISOString());
+  return redirect('/');
+ ```
+  
+  ### Function to access the token when required in a util file Auth.js
+ ![image](https://user-images.githubusercontent.com/78524327/215476686-e3052d9f-7aac-4390-bafd-09d579dbdf97.png)
+ 
+ ### For backend requests that are restricted to authorized users , the token must be attached as such : 
+ 
+ ![image](https://user-images.githubusercontent.com/78524327/215476940-51c5c7aa-1b3d-436b-9eed-032f5ea215d1.png)
+ 
+ 
+
+
+ 
+ 
  
  
  
