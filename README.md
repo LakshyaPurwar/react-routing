@@ -171,6 +171,7 @@ const token  = useLoaderData();
     console.log(tokenDuration);
 
     setTimeout(()=>{
+    //useSubmit hook used to programatically call an action
       submit(null , {action:'/logout' , method:'post'});
     },
     tokenDuration);
