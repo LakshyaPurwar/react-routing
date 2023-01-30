@@ -30,7 +30,7 @@ import ErrorPage from './pages/ErrorPage';
 import EventsLayout from './pages/EventsLayout';
 import { LoaderFunction as eventsLoader } from './pages/EventsPage';
 import { LoaderFunction as eventDetails } from './pages/EventDetailsPage';
-import { FormAction as newEventAction } from './pages/NewEventPage';
+import { FormAction as EventManipulationAction } from './components/EventForm';
 import { ActionFunction as eventDeleteAction } from './pages/EventDetailsPage';
 
 
@@ -50,17 +50,20 @@ const router = createBrowserRouter([
                element: <EventsPage />,
               loader : eventsLoader,
          },
-         {path:':eventId/' ,
-          children:[
-            { index:true , element: <EventDetailsPage />,action : eventDeleteAction },
-            { path: 'edit', element: <EditEventPage /> }
-          ],
+         {
+          path:':eventId/' ,
           loader : eventDetails,
-          id : 'event-loader-route'
+          id : 'event-loader-route',
+          children:
+          [
+            { index:true , element: <EventDetailsPage />,action : eventDeleteAction },
+            { path: 'edit', element: <EditEventPage /> , action:EventManipulationAction }
+          ],
+          
         },
           
 
-          { path: 'new', element: <NewEventPage />  , action:newEventAction},
+          { path: 'new', element: <NewEventPage />  , action:EventManipulationAction},
           
         ]
       },

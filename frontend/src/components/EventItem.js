@@ -1,20 +1,16 @@
+import { Link, useRouteLoaderData, useSubmit } from 'react-router-dom';
 import classes from './EventItem.module.css';
-import { Link } from 'react-router-dom';
-import { useSubmit } from 'react-router-dom';
 
 
 function EventItem({ event }) {
-  const submit = useSubmit(); 
-  function startDeleteHandler() {
-    // ...
-    const confirmation = window.confirm('Sure you waanna delete this event');
-    if(confirmation)
-    {
-      //Programatically trigger the action set upon the route of
-      //its parent element.
-      //But how...
-      submit(null , {method : 'delete'});
+  const token = useRouteLoaderData('root');
+  const submit = useSubmit();
 
+  function startDeleteHandler() {
+    const proceed = window.confirm('Are you sure?');
+
+    if (proceed) {
+      submit(null, { method: 'delete' });
     }
   }
 
@@ -25,8 +21,8 @@ function EventItem({ event }) {
       <time>{event.date}</time>
       <p>{event.description}</p>
       <menu className={classes.actions}>
-        <Link to="edit">Edit</Link>
-        <button onClick={startDeleteHandler}>Delete</button>
+        {token && <Link to="edit">Edit</Link>}
+        {token && <button onClick={startDeleteHandler}>Delete</button>}
       </menu>
     </article>
   );
