@@ -8,6 +8,15 @@
 #### 4.This can be accessed in the component as  : 
 
 ```javascript
+//Link to the same route but with added info.
+<NavLink
+              to="/auth?mode=login"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+```
+```javascript
   import { useSearchParams } from 'react-router-dom';
    const [searchParams , setSearchParams] = useSearchParams();
    const isLogin = searchParams.get('mode') === 'login';
@@ -34,3 +43,44 @@
 
   const url = 'http://localhost:8080/'+mode;
  ```
+ 
+ 
+ ## II.Validation user input and outputting error in the input component
+ 
+ #### 1.Just client side auth is not enough as it can be altered in the browser.
+ #### 2.In the action of form submission , if the server finds errors , it may respond accordigly (Eg : 422 status code)
+ #### 3.This response should be checked in the action , and if(status==422) suppose , then this response should be forwarded to the form compnent for feedback.
+ 
+ ```javascript
+ if(response.status === 422 || response.status === 401)
+  {
+    //We do not wanna throw an error
+    //But show this on the error page by returning the resposne here.
+    return response;
+  }
+ 
+ 
+ ```
+ 
+ ```javascript
+//In the form , the returned action response can be accessed and accordingly , feedback can be given.
+
+import { useActionData } from 'react-router-dom';
+const data = useActionData();
+    //The feedback can be given inside the form as : 
+    
+          {data && data.errors && (
+        <ul>
+          {Object.values(data.errors).map((errorValue)=>{
+            return <li key={errorValue}>{errorValue}</li>
+          })}
+          </ul>)}
+
+          {data && data.message && <p>{data.message}</p>}
+ 
+ 
+ ```
+ 
+ 
+ 
+ 
