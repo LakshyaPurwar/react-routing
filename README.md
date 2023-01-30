@@ -119,7 +119,101 @@ const data = useActionData();
  ![image](https://user-images.githubusercontent.com/78524327/215478686-06ee20b7-2fe4-4e62-94e5-312e47c371e7.png)
  
  
- #### A logout path with no component , but action ` { path : 'logout' , action:logoutAction},`
+ #### A logout route with no component , but action ` { path : 'logout' , action:logoutAction},`
+ 
+ 
+ ## Updating UI based on token.
+ #### 1.To make token available in all components , a loader that returns the token is associated with the root layout route.
+ #### 2.All components can access it using useRouteLoaderData
+ #### 2.Best part , with every route transition , the root loader is run.If token is changed , returned value is changed,
+ #### Then all components using the returned value get re-evaluated (Just like a state variable)
+ #### 3.Now using this token , its available or not , the ui can by altered and with change it will be reevaluated too.
+ 
+ ```javascript
+  const token = useRouteLoaderData('root');
+   {token && <Link to="edit">Edit</Link>}
+   {token && <button onClick={startDeleteHandler}>Delete</button>}
+ ```
+ 
+ ## Adding Route Protection
+ 
+ #### 1.Despite the fact that protect ui links are hidden in logged out state , yet the route may be manually entered and visited.
+ #### 2.Also , without the token , the hidden forms wont't work , still the route should not be accessible.
+ #### 3.For this , a loader is attached to all protected routes ,which checks for the token and redirects if its absent.
+ ```javascript
+ export function routeProtectionLoader(){
+    const token = getAuthToken();
+    if(!token)
+    {
+        return redirect('/auth?mode=login');
+    }
+    console.log('Nothing wrong with the loader i believe');
+    return token;
+}
+
+ ````
+ ![image](https://user-images.githubusercontent.com/78524327/215481920-a44ace9e-5304-4e2e-ad3f-b604a0f75eb8.png)
+
+
+## AUTOMATIC LOGOUT AND TOKEN EXPIRATION
+
+```javascript
+//In the layout element , a useEffect is used to set a timeout to log the user out( if logged in ) after the remaining duration ( from expiration time stored)
+const token  = useLoaderData();
+  useEffect(()=>{
+    if(!token)
+    {
+      //We do not do anything
+      return;
+    }
+
+    const tokenDuration = getTokenDuration();
+    console.log(tokenDuration);
+
+    setTimeout(()=>{
+      submit(null , {action:'/logout' , method:'post'});
+    },
+    tokenDuration);
+  },[
+    token,
+    submit
+  ])
+```
+
+```javascript
+//The function to get the auth token automatically changes it to expired after the set time
+export function getAuthToken(){
+    const token = localStorage.getItem('token');
+    if(!token)
+    {
+        return null;
+    }
+    const tokenDuration = getTokenDuration();
+    if(tokenDuration>0)
+    {
+        return token;
+    }
+    else
+    {
+        return 'EXPIRED';
+    }
+
+}
+```
+
+```javascript
+//Token duration calculated as  : 
+export function getTokenDuration(){
+
+    const storedExpirationDate = localStorage.getItem('expiration');
+    const expirationDate = new Date(storedExpirationDate);
+    const now = new Date();
+    const duration = expirationDate.getTime() - now.getTime();
+    return duration;
+
+
+  }
+```
  
  
  
